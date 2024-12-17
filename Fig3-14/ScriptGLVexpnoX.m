@@ -2,7 +2,7 @@
 %Random Evolutionary Dynamics in Predator-Prey Systems Yields Large, Clustered Ecosystems
 % by Hamster, Schaap, Van Heijster and Dijksman.
 %Parameters are as described in Table 1 and the equations as outlined in
-%section 2. To computes averages such as Fig.4, this script must be run
+%section 2. To compute averages such as Fig.4, this script must be run
 %multiple times. For Fig. 6, the script must be run multiple times for
 %different eta values. For the figures with variable r_i, the noise in line
 %80 must be uncommented. 
@@ -32,7 +32,7 @@ beta=1/4;
 % Preallocate arrays
 Tvector=zeros(expecnumspec,1);  %vector that will store all speciation times
 TvectorP=zeros(expecnumspec/2,1);  %vector that will store all speciation times for prey
-TvectorR=zeros(expecnumspec/2,1);  %vector that will store all speciation times forpredators
+TvectorR=zeros(expecnumspec/2,1);  %vector that will store all speciation times for predators
 
 %if species j is alive, we set Alive(j)=j, otherwise 0.
 Alive=zeros(1,expecnumspec); Alive(1:NspecP)=1; 
@@ -170,7 +170,7 @@ Asortend=Aend(Sort,Sort);
 
 figure(5)
 mycolormap=[parula];
-mycolormap(52,:)=[0.6350 0.0780 0.1840]; %52 is here the index of zero, might change from iteration to interation
+mycolormap(52,:)=[0.6350 0.0780 0.1840]; %52 is here the index of zero, might change from iteration to iteration
 hold on
 colormap(mycolormap);
 colorbar
@@ -184,7 +184,7 @@ xlim([1 RemSpec]); ylim([1 RemSpec])
 axis off
 hold off
 
-%make graph of ancestoral distances for prey species
+%make graph of ancestral distances for prey species
 adjP=zeros(NtotalP);
 for k=1:NtotalP
     adjP(k,Ancestor(k))=abs(TvectorP(k)-TvectorP(Ancestor(k))); adjP(Ancestor(k),k)=adjP(k,Ancestor(k));
@@ -209,7 +209,7 @@ for i=1:NtotalPA
     end
 end
 
-%make graph of ancestoral distances for predartor species
+%make graph of ancestral distances for predator species
 adjR=zeros(NtotalR);
 for k=1:NtotalR
     ancR=Ancestor(expecnumspec/2+k)-expecnumspec/2;
@@ -237,7 +237,7 @@ for i=1:NtotalRA
     end
 end
 
-%turn distance matrix into an linkage object for matlab's dendogram 
+%turn distance matrix into an linkage object for matlab's dendrogram 
 ZP=linkage(squareform(DistPend));
 figure(6)
 %H1=dendrogram(ZP,0,'ColorThreshold',1e6);
@@ -257,7 +257,7 @@ xlabel('Predator','Interpreter','Latex','Fontsize',45)
 
 P=Aend(1:NtotalPA,NtotalPA+1:end);
 %kmeans clustering on functional differences Prey and evaluation using
-%silhoutette. 5 is the number of cluster it is forced to find
+%silhoutette. 5 is the number of clusters it is forced to find
 ClusterDistPphen=kmeans(full(P),5,'Distance','sqeuclidean','Replicates',500);
 [silh] = silhouette(full(P),ClusterDistPphen,'sqeuclidean');
 mean(silh) %the higher the value, the better
