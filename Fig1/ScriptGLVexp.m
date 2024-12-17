@@ -4,7 +4,7 @@
 %Parameters are as described in Table 1 and the equations as outlined in
 %section 2.
 %
-%%Comments and questions can be send to c.h.s.hamster@uva.nl
+%%Comments and questions can be sent to c.h.s.hamster@uva.nl
 
 
 % time settings of simulation
@@ -102,7 +102,7 @@ Br=sum(x(1:i-1,expecnumspec/2+1:end),2); %Biomass predator
 figure(1)
 hold on
 xnan=x;
-xnan(xnan==0)=nan; %zeros are set to nan so the inital zero part of each species does not show.
+xnan(xnan==0)=nan; %zeros are set to nan so the initial zero part of each species does not show.
 ylim([0 4.75])
 plot(Tvector,xnan(1:i-1,:),'linewidth',3)
 ylabel('$x_i,y_j$','Interpreter','latex','Fontsize',45)
